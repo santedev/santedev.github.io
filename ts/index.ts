@@ -1112,7 +1112,6 @@ async function randomLetterAnimation(
 ): Promise<void> {
   return new Promise<void>((resolve) => {
     const letters = "abcdefghijklmnopqrstuvwxyz1234567890";
-    let interval: NodeJS.Timeout;
 
     let text = element.textContent ?? "";
     const textLength = text.length;
@@ -1120,7 +1119,7 @@ async function randomLetterAnimation(
 
     let iteration = 0;
 
-    interval = setInterval(() => {
+    let interval = setInterval(() => {
       element.textContent = text
         .split("")
         .map((character, index) => {
