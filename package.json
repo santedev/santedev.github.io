@@ -1,0 +1,17 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "my portfolio made with love",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tsc --project tsconfig.json --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "10.9.2"
+  },
+  "dependencies": {
+  }
+}
