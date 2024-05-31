@@ -1,5 +1,5 @@
 @import "style.css";
-
+/*style*/
 :root {
   --t-header-size: clamp(40px, 7vw, 55px);
   --section-gap: clamp(25px, 4vw, 50px);
