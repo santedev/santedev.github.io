@@ -6,16 +6,18 @@
   --btn-font-muted-color: #7c8094;
   --btn-muted-color: #4e546a;
   --blue-gray: #414e73;
-  --blue-ts: #007acc;
-  --blue-css: #33a9dc;
+  --blue-ts: #1a89d5;
+  --blue-css: #249acd;
   --blue-pg: #336791;
-  --orange-html: #de6835;
-  --red-figma: #ff7262;
-  --purple-csharp: #9a2fb5;
+  --orange-html: #e78155;
+  --red-figma: #e1685a;
+  --purple-csharp: #9f68ad;
   --blue-ps: #001e36;
   --black-inkscape: #131422;
   --blue-php: #8495c1;
-  --blue-wordpress: #21759b;
+  --blue-wordpress: #4299c1;
+  --blue-docker: #348bbd;
+  --orange-aws: #dfa956;
 }
 
 h1 {
@@ -73,7 +75,7 @@ section {
   fill: #cccccc;
 }
 .copy-paste-icon:focus-within path {
-  fill: #a2e1b7;
+  fill: #527aff;
 }
 .text-bio-container h2 {
   text-align: center;
@@ -134,6 +136,12 @@ p {
   border-radius: 50%;
   object-fit: cover;
 }
+.pfp-container img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
 .my-bio {
   padding-inline: 1.5rem;
 }
@@ -167,11 +175,12 @@ p {
   gap: 10px;
 }
 .project-container p {
-  text-align: center;
-  text-wrap: balance;
+  text-align: left;
   width: 100%;
+  padding-left: 12px;
+  white-space: pre-line;
 }
-.project-container .project-image-container img, 
+.project-container .project-image-container img,
 .project-container p {
   max-width: 440px;
 }
@@ -198,7 +207,7 @@ p {
   right: 0;
   background: #03020fce;
   z-index: 10;
-  visibility: hidden; 
+  visibility: hidden;
   border-radius: 30px;
   aspect-ratio: 16/9;
   z-index: 100;
@@ -206,26 +215,27 @@ p {
 .project-container .project-image-container div h3 {
   text-align: center;
   margin-bottom: 10px;
-  visibility: hidden;  
+  visibility: hidden;
 }
-.project-container .project-image-container div svg { 
+.project-container .project-image-container div svg {
   width: 50px;
   height: 50px;
-  fill: var(--white); 
-  visibility: hidden;  
+  fill: var(--white);
+  visibility: hidden;
 }
 .project-container .project-image-container div svg:hover {
   fill: #cccccc;
 }
 .project-container .project-image-container:hover div svg,
-.project-container .project-image-container:hover div, 
+.project-container .project-image-container:hover div,
 .project-container .project-image-container:hover div h3 {
-  visibility: visible; 
+  visibility: visible;
 }
 .project-container .project-image-container img {
   aspect-ratio: 16/9;
   width: 100%;
   height: auto;
+  object-fit: cover;
   border-radius: 30px;
   margin-bottom: 5px;
 }
@@ -353,13 +363,13 @@ p {
   transition-property: fill, color, background, border, stroke;
 }
 .project-container .project-image-container div svg,
-.project-container .project-image-container div, 
+.project-container .project-image-container div,
 .project-container .project-image-container div h3 {
   transition: opacity 0.2s ease-in-out, visibility 0s linear 0.5s;
   opacity: 0;
 }
 .project-container .project-image-container:hover div svg,
-.project-container .project-image-container:hover div, 
+.project-container .project-image-container:hover div,
 .project-container .project-image-container:hover div h3 {
   opacity: 1;
   visibility: visible;
@@ -430,7 +440,7 @@ p {
   top: 10px;
   left: 0;
   right: 0;
-  padding: clamp(20px,3vw,25px);
+  padding: clamp(20px, 3vw, 25px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -451,9 +461,9 @@ p {
 }
 .modal span,
 .modal span bold {
-  font-size: clamp(12px,3vw,16px);
+  font-size: clamp(12px, 3vw, 16px);
 }
-.modal img { 
+.modal img {
   cursor: pointer;
 }
 .container-html-elements {
@@ -465,24 +475,24 @@ p {
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: transparent;
+  background: transparent;
 }
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #888; 
-    border-radius: 6px; 
+  background-color: #888;
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #777;
+  background: #777;
 }
 
 .blue-css {
@@ -513,6 +523,13 @@ p {
   background: var(--orange-html);
 }
 
+.orange-aws {
+  color: var(--orange-aws);
+}
+.bg-orange-aws {
+  background: var(--orange-aws);
+}
+
 .red-figma {
   color: var(--red-figma);
 }
@@ -539,6 +556,13 @@ p {
 }
 .bg-black-inkscape {
   background: var(--black-inkscape);
+}
+
+.blue-docker {
+  color: var(--blue-docker);
+}
+.bg-blue-docker {
+  background: var(--blue-docker);
 }
 
 .blue-php {

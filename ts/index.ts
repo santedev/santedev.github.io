@@ -53,19 +53,24 @@ if (
   }
   if (cvLink instanceof HTMLElement) {
     cvLink.textContent = lang === "es" ? "descargar cv" : "download cv";
+    const urlDrive = "https://drive.google.com/uc?export=download&id="
+    const urlEN = "1x5GtkIgw1MO9L2c1kSELWanD7W5nXsyF"
+    const urlES = "1z32iG9ALR5B1dsKRDvT-5d8gRWsWIZKJ"
+    cvLink.setAttribute("href", lang === "es" ? `${urlDrive}${urlES}` : `${urlDrive}${urlEN}`)
   }
   if (paragraphProjectChatApp instanceof HTMLElement) {
-    paragraphProjectChatApp.textContent =
+    paragraphProjectChatApp.innerHTML =
       lang === "es"
-        ? "Aplicación para enviar y recibir mensajes que hice recientemente"
-        : "A chat app I have made recently";
+        ? "Aplicación creada para enviar mensajes en tiempo real, utilizando diferentes tecnologías como AWS y Docker, entre otras.\n\n Utiliza un servidor creado con C#, conexiones WebSocket y AWS para manejar imágenes. Los principales lenguajes usados para crear la aplicación son TypeScript y ASP.NET Core C#, utilizando el namespace HttpListener"
+        : "An application created to send messages in real time, using various technologies such as AWS, Docker, etc. \n\n It uses a server built with C#, WebSocket connections, and AWS to manage images. The main languages used to create the application are TypeScript and ASP.NET Core C# using the HttpListener namespace";
   }
   if (paragraphProjectBlanke instanceof HTMLElement) {
-    paragraphProjectBlanke.textContent =
+    paragraphProjectBlanke.innerHTML =
       lang === "es"
-        ? "Tienda de perfumes online hecha con WordPress y WooCommerce"
-        : "Perfume shop ecommerce made with WordPress and WooCommerce";
+        ? "Tienda de perfumes en línea construida con WordPress y WooCommerce, utilizando TypeScript y PHP. \n\n Desarrollé un tema personalizado modificando la lógica y creando funcionalidades únicas con PHP. El sitio cuenta con una navegación fácil de usar, integración de pagos seguros y rendimiento optimizado para una experiencia de compra fluida."
+        : "Perfume shop ecommerce built with WordPress and WooCommerce, utilizing TypeScript and PHP. \n\n I developed a custom theme by modifying the logic and creating unique functionalities using PHP. The site features user-friendly navigation, secure payment integration, and optimized performance for a seamless shopping experience";
   }
+
   if (
     formHeader instanceof HTMLElement &&
     nameLabel instanceof HTMLElement &&
@@ -104,8 +109,8 @@ if (
 
     englishSkillsContent.textContent =
       lang === "es"
-        ? "Tengo un nivel avanzado, estudié en el Colombo Americano."
-        : "I have an advanced level, I studied at Colombo Americano.";
+        ? "He desarrollado un nivel bueno en inglés además he estudiado en el Colombo Americano hasta el nivel B2."
+        : "I have developed a good level of English and I studied at Colombo Americano, where I graduated at the B2 level.";
   }
   if (githubHeader instanceof HTMLElement) {
     githubHeader.textContent =
@@ -166,7 +171,7 @@ if (inputInteract) {
         btnSubmitInput?.classList.remove("muted");
       }
     }, 10);
-  }, 2000);
+  }, 1200);
 }
 
 setInterval(() => {
@@ -1012,6 +1017,47 @@ async function convertToHtml(element: HTMLElement, HTMLInstance: HTMLElement) {
         });
       });
     }
+    if (element.classList.contains("section-2")) {
+      const chatAppLinkSvg = document.querySelector("#chatapp-link");
+      chatAppLinkSvg?.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.location.href = "https://github.com/santedev/chat-app";
+      });
+      const blankeLinkSvg = document.querySelector("#blanke-link");
+      blankeLinkSvg?.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.location.href = "https://github.com/santedev/blanke";
+      });
+
+      document
+        .querySelectorAll(".project-container p")
+        ?.forEach((container) => {
+          const readMoreBtn = document.createElement("button");
+          readMoreBtn.textContent = "...read more";
+          if (
+            container?.firstChild?.nodeType === 3 &&
+            container?.firstChild?.textContent &&
+            container?.firstChild?.textContent.length > 30
+          ) {
+            const textNode = container.firstChild;
+            const textContent = textNode?.textContent;
+            container.firstChild.textContent = textContent?.slice(0, 120) ?? ""
+            readMoreBtn.addEventListener("click", (event) => {
+              event.preventDefault();
+              const textLength = textNode?.textContent?.length ?? 0;
+              if (textLength > 120 && textNode?.textContent) {
+                textNode.textContent = `${textContent?.slice(0, 120)}` ?? "";
+                readMoreBtn.textContent = "...read more";
+              } else if (textNode?.textContent) {
+                textNode.textContent = `${textContent} ` ?? "";
+                readMoreBtn.textContent = " read less";
+              }
+            });
+
+            container.appendChild(readMoreBtn);
+          }
+        });
+    }
     if (element.classList.contains("section-3")) {
       const btnSubmit = document.querySelector(".btn-submit");
       const formSendEmail = document.querySelector("#form-send-email");
@@ -1090,18 +1136,6 @@ async function convertToHtml(element: HTMLElement, HTMLInstance: HTMLElement) {
           }
         }
       }
-    }
-    if (element.classList.contains("section-2")) {
-      const chatAppLinkSvg = document.querySelector("#chatapp-link");
-      chatAppLinkSvg?.addEventListener("click", (event) => {
-        event.preventDefault();
-        window.location.href = "https://github.com/santedev";
-      });
-      const blankeLinkSvg = document.querySelector("#blanke-link");
-      blankeLinkSvg?.addEventListener("click", (event) => {
-        event.preventDefault();
-        window.location.href = "https://github.com/santedev";
-      });
     }
   });
 }
