@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap");
+
+html {
+  font-family: "Space Mono", monospace;
+}
+
+body {
+  background: #1f222e;
+  color: #d1dbd7;
+}
+
+span,
+p {
+  font-family: "Inter Tight", sans-serif;
+}
