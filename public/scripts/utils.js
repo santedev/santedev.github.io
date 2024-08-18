@@ -1,14 +1,14 @@
 /**
  * @param {Event} event
- * @param {SVGElement} svgElem
+ * @param {HTMLElement|SVGElement} elem
  */
-function copyCLipboard(event, svgElem) {
+function copyCLipboard(event, elem) {
  event.preventDefault();
- if (!(svgElem instanceof SVGElement)) {
-   throw new Error("svgElem is not instance of SVGElement");
+ if (!elem) {
+   throw new Error("elem is null or undefined");
  }
- const elem = $(svgElem).closest("span").text();
- navigator.clipboard.writeText(elem.trim());
+ const parent = $(elem).closest("span").text();
+ navigator.clipboard.writeText(parent.trim());
 }
 
 /**

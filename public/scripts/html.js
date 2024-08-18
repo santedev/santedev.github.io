@@ -28,8 +28,7 @@ const $copyPasteSvg = `<svg
                        viewBox="0 0 24 24"
                        fill="none"
                        xmlns="http://www.w3.org/2000/svg"
-                       tabindex="0"
-                       onclick="copyCLipboard(event, this)"
+                       tabindex="0"                       
                       ><path d="M16 12.9V17.1C16 20.6 14.6 22 11.1 22H6.9C3.4 22 2 20.6 2 17.1V12.9C2 9.4 3.4 8 6.9 8H11.1C14.6 8 16 9.4 16 12.9Z" /> 
                        <path d="M17.0998 2H12.8998C9.81668 2 8.37074 3.09409 8.06951 5.73901C8.00649 6.29235 8.46476 6.75 9.02167 6.75H11.0998C15.2998 6.75 17.2498 8.7 17.2498 12.9V14.9781C17.2498 15.535 17.7074 15.9933 18.2608 15.9303C20.9057 15.629 21.9998 14.1831 21.9998 11.1V6.9C21.9998 3.4 20.5998 2 17.0998 2Z" />
                       </svg>`;
@@ -51,8 +50,12 @@ const $bio = `<span class="paragraph muted">${
     : "Software engineering student, committed to work on great projects."
 }</span>`;
 
+/**
+ * @returns {HTMLElement}
+ */
 const $SectionBio = function () {
-  return `<section class="section-1 w-fit flex flex-col lg:flex-row justify-center section-gap">
+  const $SectionBio =
+    $(`<section class="section-1 w-fit flex flex-col lg:flex-row justify-center section-gap">
       <div
         class="bio w-fit px-3-sm flex flex-col items-center justify-center bg-blueSolid"
       >
@@ -118,7 +121,13 @@ const $SectionBio = function () {
           >
         </div>
       </div>
-     </section>`;
+     </section>`)[0];
+  $($SectionBio)
+    .find(".copy-paste-icon")
+    .on("click", function (event) {
+      copyCLipboard(event, this);
+    });
+  return $SectionBio;
 };
 
 /** @param {string} projectName @return {string} */
@@ -128,7 +137,7 @@ const githubSvg = function (projectName) {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           class="cursor-pointer"
-          onclick="redirectToGithubRepo(event, '${projectName}')">
+          id="${projectName}-project">
           <path
           fill-rule="evenodd"
           clip-rule="evenodd"
@@ -190,10 +199,10 @@ const projects = [
 
 /**
  * @param {Project} project
- * @return {string}
+ * @return {HTMLElement}
  */
 const generateProjectHTML = function (project) {
-  return `
+  const $project = $(`
  <a
    href="${project.ProjectLink}"
    class="project-container bg-blueSolid text-white rounded-lg shadow-lg flex flex-col"
@@ -224,14 +233,30 @@ const generateProjectHTML = function (project) {
        ${project.Description}
      </p>
    </div>
- </a>`;
+ </a>`)[0];
+  $($project)
+    .find(`#${project.ProjectName}-project`)
+    .on("click", function (event) {
+      redirectToGithubRepo(event, project.ProjectName);
+    });
+  return $project;
 };
 
+/** @return {HTMLElement} */
 const $SectionProjects = function () {
-  return `<section class="section-2 w-fit flex flex-wrap justify-center gap-6">
-            ${projects.map((project) => generateProjectHTML(project)).join("")}
-          </section>`;
+  const $sectionProjects =
+    $(`<section class="section-2 w-fit flex flex-wrap justify-center gap-6">
+  </section>`)[0];
+
+  projects.forEach((p) => {
+    const proj = generateProjectHTML(p);
+
+    $($sectionProjects).append(proj);
+  });
+
+  return $sectionProjects;
 };
+
 const $arrowSendSvg = `
  <svg
    width="25"
@@ -248,8 +273,9 @@ const $arrowSendSvg = `
  </svg>
 `;
 
+/** @return {HTMLElement} */
 const $SectionFormSendMessage = function () {
-  return `
+  const $section = $(`
  <section class="section-3 w-fit flex flex-col gap-4">
   <div class="bg-blueSolid w-fit form-container">
     <h2 class="mb-4 text-xl font-semibold">
@@ -258,7 +284,6 @@ const $SectionFormSendMessage = function () {
     <form
       method="POST"
       class="flex items-center w-full"
-      onsubmit="sendMessage(event, this)"
     >
       <input
         type="hidden"
@@ -315,10 +340,18 @@ const $SectionFormSendMessage = function () {
     </form>
   </div>
 </section>
-`;
+`)[0];
+  $($section)
+    .find("form")
+    .on("submit", function (event) {
+      sendMessage(event, this);
+    });
+  return $section;
 };
+
+/** @return {HTMLElement} */
 const $SectionLastPart = function () {
-  return `
+  return $(`
  <section class="section-4 w-fit flex flex-col-reverse lg:flex-row section-gap">
    <div class="github-container w-fit font-semibold">
      <h2>${
@@ -362,7 +395,7 @@ const $SectionLastPart = function () {
      </p>
    </div>
  </section>            
-`;
+`)[0];
 };
 
 /**
