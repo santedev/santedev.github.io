@@ -1,0 +1,26 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "my portfolio made with love",
+  "main": "index.js",
+  "scripts": {
+    "min-js": "uglifyjs public/scripts/*.js -o dist/js/bundle.min.js --compress --mangle",
+    "min-main-css": "cleancss public/css/main.css -o dist/css/main.min.css",
+    "min-tail": "cleancss public/css/styles.css -o dist/css/styles.min.css",
+    "min-css": "npm-run-all min-main-css min-tail",
+    "tailwind": "tailwind -i tailwind/app.css -o public/css/styles.css --watch",
+    "watch-js": "nodemon --watch public/scripts --ext js --ignore dist --exec \"npm run min-js\"",
+    "_watch": "tsc --project tsconfig.json --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "daisyui": "^4.12.10",
+    "nodemon": "^3.1.4",
+    "npm-run-all": "^4.1.5",
+    "tailwindcss": "^3.4.10",
+    "ts-node": "10.9.2",
+    "uglify-js": "^3.19.2"
+  }
+}
