@@ -50,9 +50,7 @@ const $bio = `<span class="paragraph muted">${
     : "Software engineering student, committed to work on great projects."
 }</span>`;
 
-/**
- * @returns {HTMLElement}
- */
+/** @returns {HTMLElement} */
 const $SectionBio = function () {
   const $SectionBio =
     $(`<section class="section-1 w-fit flex flex-col lg:flex-row justify-center section-gap">
@@ -131,7 +129,7 @@ const $SectionBio = function () {
 };
 
 /** @param {string} projectName @return {string} */
-const githubSvg = function (projectName) {
+const _githubSvg = function (projectName) {
   return `<svg
           viewBox="0 0 61 60"
           fill="none"
@@ -201,7 +199,7 @@ const projects = [
  * @param {Project} project
  * @return {HTMLElement}
  */
-const generateProjectHTML = function (project) {
+const _generateProjectHTML = function (project) {
   const $project = $(`
  <a
    href="${project.ProjectLink}"
@@ -211,7 +209,7 @@ const generateProjectHTML = function (project) {
      <div class="relative project-image-container w-fit">
        <div class="absolute top-0 right-0">
          <h3 class="font-semibold">${project.ProjectName}</h3>
-         ${githubSvg(project.ProjectName)}
+         ${_githubSvg(project.ProjectName)}
        </div>
        <img src="dist/img/${project.ProjectName}-screenshot.png" alt="${
     project.ProjectName
@@ -249,7 +247,7 @@ const $SectionProjects = function () {
   </section>`)[0];
 
   projects.forEach((p) => {
-    const proj = generateProjectHTML(p);
+    const proj = _generateProjectHTML(p);
 
     $($sectionProjects).append(proj);
   });
