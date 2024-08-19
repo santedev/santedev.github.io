@@ -9,7 +9,7 @@
 
   (async function renderSections() {
     for (const $element of sectionArr) {
-      await parseHtmlElements($element, 0);
+      await parseHtmlElements($element);
     }
   })();
 
@@ -31,13 +31,11 @@
 
       if (element.firstChild && element.firstChild.nodeType === 3) {
         const textContent = element.firstChild.textContent.trim();
-        if (textContent) {
-          const textSpan = document.createElement("span");
-          textSpan.style.marginLeft = `${16 * (depth + 1)}px`;
-          textSpan.textContent = textContent;
-          span.appendChild(textSpan);
-          span.innerHTML += "<br>";
-        }
+        const textSpan = document.createElement("span");
+        textSpan.style.marginLeft = `${16 * (depth + 1)}px`;
+        textSpan.textContent = textContent;
+        span.appendChild(textSpan);
+        span.innerHTML += "<br>";
       }
 
       Array.from(element.children).forEach(async (child) => {
@@ -138,7 +136,6 @@
 
   function generateIndices(length) {
     const indices = Array.from(Array(length).keys());
-    //shuffleArray(indices);
     return indices;
   }
 
